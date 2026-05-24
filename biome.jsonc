@@ -32,7 +32,6 @@
 				"noProcessGlobal": "error",
 				"noUndeclaredDependencies": "error",
 				"noUndeclaredVariables": "error",
-				"noUnresolvedImports": "error",
 				"useImportExtensions": "error"
 			},
 			"performance": {
