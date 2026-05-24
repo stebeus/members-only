@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	<%- include('partials/metadata', locals.title) %>
+	<body>
+		<div id="root">
+			<fieldset>
+				<legend><%= locals.title %></legend>
+				<form action="<%= action %>" method="post">
+					<% if (locals.errs != null) {%>
+						<ul class="errors">
+							<% for (const { message } of errs) { %>
+								<li class="error"><%= message %></li>
+							<% } %>
+						</ul>
+					<% } %>
+
+					<% for (const input of inputs) { %>
+						<%- include('partials/form/input-field', input)%>
+					<% } %>
+
+					<% if (locals.hasTextarea) {%>
+						<%- include('partials/form/textarea-field', textarea)%>
+					<% } %>
+
+					<%- include('partials/form/button', { label: submissionLabel })%>
+				</form>
+			</fieldset>
+		</div>
+	</body>
+</html>
