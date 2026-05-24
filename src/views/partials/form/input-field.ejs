@@ -1,0 +1,11 @@
+<label class="field">
+	<span class="label"><%= label %></span>
+	<input
+		type="<%= locals.type ?? 'text' %>"
+		name="<%= name %>"
+		placeholder="<%= locals.placeholder %>"
+    maxlength="<%= locals.maxLength %>"
+		<%- locals.isRequired ? 'required' : '' %>
+		autocomplete=<%= locals.autocomplete ?? 'off' %>
+	/>
+</label>

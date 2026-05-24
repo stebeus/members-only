@@ -1,0 +1,8 @@
+<label class="field">
+	<span class="label"><%= label %></span>
+  <textarea
+    name="<%= name %>"
+    maxlength="<%= locals.maxLength %>"
+    <%- locals.isRequired ? 'required' : '' %>
+  ></textarea>
+</label>
