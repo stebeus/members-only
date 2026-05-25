@@ -1,3 +1,13 @@
+import vine from '@vinejs/vine';
+
+import { props, userSchema } from './shared.js';
+
+const schema = vine.object({
+	fullName: vine.string().trim().alpha({ allowSpaces: true }).maxLength(100),
+	...userSchema,
+	confirmPassword: vine.string().sameAs('password'),
+});
+
 const inputs = [
 	{
 		label: 'Full name',
