@@ -17,16 +17,7 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
-			"complexity": {
-				"noExcessiveCognitiveComplexity": "error",
-				"noForEach": "error",
-				"noImplicitCoercions": "error",
-				"noUselessStringConcat": "error",
-				"noUselessUndefined": "error",
-				"useMaxParams": "error",
-				"useSimplifiedLogicExpression": "error",
-				"useWhile": "error"
-			},
+			"complexity": "error",
 			"correctness": {
 				"noGlobalDirnameFilename": "error",
 				"noProcessGlobal": "error",
@@ -39,9 +30,7 @@
 				"noBarrelFile": "error",
 				"noDelete": "error"
 			},
-			"security": {
-				"noSecrets": "error"
-			},
+			"security": "error",
 			"style": {
 				"noCommonJs": "error",
 				"noDefaultExport": "error",
