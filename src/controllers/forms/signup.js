@@ -1,6 +1,4 @@
-import { props } from './shared.js';
-
-const signupInputs = [
+const inputs = [
 	{
 		label: 'Full name',
 		name: 'fullName',
