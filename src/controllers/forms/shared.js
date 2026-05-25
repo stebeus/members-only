@@ -1,3 +1,20 @@
 const props = { autocomplete: 'on', isRequired: true };
 
-export { props };
+const renderForm = (
+	res,
+	{ title, action, errs, inputs = [], hasTextarea, textarea, submissionLabel },
+) => {
+	const status = errs == null ? 201 : 400;
+
+	return res.status(status).render('form', {
+		title,
+		action,
+		errs: errs?.messages,
+		inputs,
+		hasTextarea,
+		textarea,
+		submissionLabel,
+	});
+};
+
+export { props, renderForm };
