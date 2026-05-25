@@ -45,3 +45,7 @@ const renderSignup = (res, errs) =>
 		inputs,
 		submissionLabel: 'Sign up',
 	});
+
+const getSignup = (req, res) => renderSignup(res);
+
+export { getSignup };
