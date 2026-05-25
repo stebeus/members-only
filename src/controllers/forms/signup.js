@@ -1,4 +1,7 @@
 import vine from '@vinejs/vine';
+import { hash } from 'bcryptjs';
+
+import * as db from '#root/db/db.js';
 
 import { props, renderForm, userSchema } from './shared.js';
 
@@ -48,4 +51,18 @@ const renderSignup = (res, errs) =>
 
 const getSignup = (req, res) => renderSignup(res);
 
-export { getSignup };
+const postSignup = async (req, res) => {
+	try {
+		const validatedData = await vine.validate({ schema, data: req.body });
+		const { fullName, username, password } = validatedData;
+		const hashedPassword = await hash(password, 10);
+
+		await db.createUser(fullName, username, hashedPassword);
+
+		res.redirect('/');
+	} catch (err) {
+		return renderSignup(res, err);
+	}
+};
+
+export { getSignup, postSignup };
