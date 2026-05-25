@@ -1,6 +1,6 @@
 import vine from '@vinejs/vine';
 
-import { props, userSchema } from './shared.js';
+import { props, renderForm, userSchema } from './shared.js';
 
 const schema = vine.object(userSchema);
 
@@ -18,3 +18,12 @@ const inputs = [
 		...props,
 	},
 ];
+
+const renderLogin = (res, errs) =>
+	renderForm(res, {
+		title: 'Log in',
+		action: '/log-up',
+		errs,
+		inputs,
+		submissionLabel: 'Log in',
+	});
