@@ -4,7 +4,7 @@ import express from 'express';
 import passport from 'passport';
 
 import { PORT } from './config.js';
-import * as errorControllers from './controllers/errors.js';
+import { handleError, handleNotFoundError } from './controllers/errors.js';
 import { expressSession } from './lib/express-session.js';
 import { logger, pino } from './lib/pino.js';
 import { index } from './routes/index.js';
@@ -27,6 +27,7 @@ app.use(pino);
 
 app.use(index);
 
-app.use(errorControllers);
+app.use(handleNotFoundError);
+app.use(handleError);
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
