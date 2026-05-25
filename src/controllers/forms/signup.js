@@ -51,7 +51,7 @@ const renderSignup = (res, errs) =>
 
 const getSignup = (req, res) => renderSignup(res);
 
-const postSignup = async (req, res) => {
+const signUp = async (req, res) => {
 	try {
 		const validatedData = await vine.validate({ schema, data: req.body });
 		const { fullName, username, password } = validatedData;
@@ -65,4 +65,4 @@ const postSignup = async (req, res) => {
 	}
 };
 
-export { getSignup, postSignup };
+export { getSignup, signUp };
