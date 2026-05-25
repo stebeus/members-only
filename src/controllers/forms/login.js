@@ -4,7 +4,7 @@ import { props, userSchema } from './shared.js';
 
 const schema = vine.object(userSchema);
 
-const loginInputs = [
+const inputs = [
 	{
 		label: 'Username',
 		name: 'username',
