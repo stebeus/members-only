@@ -1,4 +1,15 @@
+import vine from '@vinejs/vine';
+
 const props = { autocomplete: 'on', isRequired: true };
+
+const userSchema = {
+	username: vine
+		.string()
+		.trim()
+		.alphaNumeric({ allowUnderscores: true })
+		.maxLength(25),
+	password: vine.string().trim(),
+};
 
 const renderForm = (
 	res,
@@ -17,4 +28,4 @@ const renderForm = (
 	});
 };
 
-export { props, renderForm };
+export { props, renderForm, userSchema };
