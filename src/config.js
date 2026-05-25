@@ -6,6 +6,4 @@ try {
 	if (error.code !== 'ENOENT') throw error;
 }
 
-const { DB_URL, PORT = 3000 } = env;
-
-export { DB_URL, PORT };
+export const { DB_URL, PORT = 3000, SESSION_SECRET } = env;
