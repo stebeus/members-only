@@ -22,7 +22,7 @@ const inputs = [
 const renderLogin = (res, errs) =>
 	renderForm(res, {
 		title: 'Log in',
-		action: '/log-up',
+		action: '/log-in',
 		errs,
 		inputs,
 		submissionLabel: 'Log in',
