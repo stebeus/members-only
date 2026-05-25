@@ -27,3 +27,7 @@ const renderLogin = (res, errs) =>
 		inputs,
 		submissionLabel: 'Log in',
 	});
+
+const getLogin = (req, res) => renderLogin(res);
+
+export { getLogin };
