@@ -4,10 +4,12 @@ import express from 'express';
 import passport from 'passport';
 
 import { PORT } from './config.js';
-import { handleError, handleNotFoundError } from './controllers/errors.js';
+import * as errorControllers from './controllers/errors.js';
 import { expressSession } from './lib/express-session.js';
-import { logger, pino } from './lib/pino-http.js';
+import { logger, pino } from './lib/pino.js';
 import { index } from './routes/index.js';
+
+import './middleware/auth.js';
 
 const app = express();
 
@@ -25,7 +27,6 @@ app.use(pino);
 
 app.use(index);
 
-app.use(handleNotFoundError);
-app.use(handleError);
+app.use(errorControllers);
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

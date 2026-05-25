@@ -2,7 +2,7 @@ import { constrainToFk } from './queries.js';
 
 const timestamp = 'created_at TIMESTAMPTZ DEFAULT NOW()';
 
-const tables = Object.freeze([
+export const tables = [
 	{
 		name: 'users',
 		columns: [
@@ -22,6 +22,4 @@ const tables = Object.freeze([
 			timestamp,
 		],
 	},
-]);
-
-export { tables };
+];

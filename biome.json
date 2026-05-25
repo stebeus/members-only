@@ -27,8 +27,7 @@
 			},
 			"performance": {
 				"noAwaitInLoops": "error",
-				"noBarrelFile": "error",
-				"noDelete": "error"
+				"noBarrelFile": "error"
 			},
 			"security": "error",
 			"style": {
@@ -105,9 +104,6 @@
 					"level": "on",
 					"options": {
 						"groups": [
-							{
-								"type": true
-							},
 							":NODE:",
 							":BLANK_LINE:",
 							[":PACKAGE_WITH_PROTOCOL:", ":PACKAGE:"],

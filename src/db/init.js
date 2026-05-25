@@ -1,4 +1,4 @@
-import { logger } from '#root/lib/pino-http.js';
+import { logger } from '#root/lib/pino.js';
 import { sql } from '#root/lib/postgres.js';
 
 import { createTables } from './queries.js';

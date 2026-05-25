@@ -7,7 +7,7 @@
 		"#root/*": "./src/*"
 	},
 	"scripts": {
-		"init-db": "node src/models/init.js",
+		"init-db": "node src/db/init.js",
 		"lint": "biome check --fix",
 		"serve": "node --watch src/index.js",
 		"start": "pnpm init-db & pnpm serve",
@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@vinejs/vine": "^4.4.0",
+		"bcryptjs": "^3.0.3",
 		"ejs": "^5.0.2",
 		"express": "^5.2.1",
 		"express-session": "^1.19.0",
