@@ -21,6 +21,10 @@ const signupInputs = [
 		type: 'password',
 		...props,
 	},
+	{
+		label: 'Confirm password',
+		name: 'confirmPassword',
+		type: 'password',
+		...props,
+	},
 ];
-
-const getSignup = async (req, res) => {};
