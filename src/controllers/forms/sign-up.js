@@ -1,7 +1,7 @@
 import vine from '@vinejs/vine';
 import { hash } from 'bcryptjs';
 
-import * as db from '#root/db/db.js';
+import * as model from '#root/models/model.js';
 
 import { props, renderForm } from './shared.js';
 
@@ -62,7 +62,7 @@ const signUp = async (req, res) => {
 		const { fullName, username, password } = validatedData;
 		const hashedPassword = await hash(password, 10);
 
-		await db.createUser(fullName, username, hashedPassword);
+		await model.createUser(fullName, username, hashedPassword);
 
 		res.redirect('/');
 	} catch (err) {

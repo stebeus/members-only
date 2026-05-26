@@ -7,7 +7,7 @@
 		"#root/*": "./src/*"
 	},
 	"scripts": {
-		"init-db": "node src/db/init.js",
+		"init-db": "node src/models/init.js",
 		"lint": "biome check --fix",
 		"serve": "node --watch src/index.js",
 		"start": "pnpm init-db & pnpm serve",
