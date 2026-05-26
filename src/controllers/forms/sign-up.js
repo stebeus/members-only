@@ -3,11 +3,16 @@ import { hash } from 'bcryptjs';
 
 import * as db from '#root/db/db.js';
 
-import { props, renderForm, userSchema } from './shared.js';
+import { props, renderForm } from './shared.js';
 
 const schema = vine.object({
 	fullName: vine.string().trim().alpha({ allowSpaces: true }).maxLength(100),
-	...userSchema,
+	username: vine
+		.string()
+		.trim()
+		.alphaNumeric({ allowUnderscores: true })
+		.maxLength(25),
+	password: vine.string().trim(),
 	confirmPassword: vine.string().sameAs('password'),
 });
 
@@ -40,7 +45,7 @@ const inputs = [
 	},
 ];
 
-const renderSignup = (res, errs) =>
+const renderSignUp = (res, errs) =>
 	renderForm(res, {
 		title: 'Sign up',
 		action: '/sign-up',
@@ -49,7 +54,7 @@ const renderSignup = (res, errs) =>
 		submissionLabel: 'Sign up',
 	});
 
-const getSignup = (req, res) => renderSignup(res);
+const getSignUp = (_req, res) => renderSignUp(res);
 
 const signUp = async (req, res) => {
 	try {
@@ -61,8 +66,8 @@ const signUp = async (req, res) => {
 
 		res.redirect('/');
 	} catch (err) {
-		return renderSignup(res, err);
+		return renderSignUp(res, err.messages);
 	}
 };
 
-export { getSignup, signUp };
+export { getSignUp, signUp };

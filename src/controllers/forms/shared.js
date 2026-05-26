@@ -1,15 +1,4 @@
-import vine from '@vinejs/vine';
-
 const props = { autocomplete: 'on', isRequired: true };
-
-const userSchema = {
-	username: vine
-		.string()
-		.trim()
-		.alphaNumeric({ allowUnderscores: true })
-		.maxLength(25),
-	password: vine.string().trim(),
-};
 
 const renderForm = (
 	res,
@@ -17,10 +6,10 @@ const renderForm = (
 ) => {
 	const status = errs == null ? 201 : 400;
 
-	return res.status(status).render('form', {
+	res.status(status).render('form', {
 		title,
 		action,
-		errs: errs?.messages,
+		errs,
 		inputs,
 		hasTextarea,
 		textarea,
@@ -28,4 +17,4 @@ const renderForm = (
 	});
 };
 
-export { props, renderForm, userSchema };
+export { props, renderForm };
