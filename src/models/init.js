@@ -1,14 +1,18 @@
-import { logger } from '#root/lib/pino.js';
-import { sql } from '#root/lib/postgres.js';
+import { Client } from 'pg';
 
-import { createTables } from './queries.js';
-import { tables } from './schema.js';
+import { DB_URL } from '#root/config.js';
+import { logger } from '#root/lib/pino.js';
+
+import { schema } from './schema.js';
 
 const init = async () => {
 	logger.info('Initializing database...');
 
-	await createTables(...tables);
-	await sql.end();
+	const client = new Client({ connectionString: DB_URL });
+
+	await client.connect();
+	await client.query(schema);
+	await client.end();
 
 	logger.info('Done');
 };

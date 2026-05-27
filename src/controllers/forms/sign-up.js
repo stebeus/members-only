@@ -1,6 +1,7 @@
 import vine from '@vinejs/vine';
 import { hash } from 'bcryptjs';
 
+import { logger } from '#root/lib/pino.js';
 import * as model from '#root/models/model.js';
 
 import { props, renderForm } from './shared.js';
@@ -66,6 +67,7 @@ const signUp = async (req, res) => {
 
 		res.redirect('/');
 	} catch (err) {
+		logger.debug(err);
 		return renderSignUp(res, err.messages);
 	}
 };

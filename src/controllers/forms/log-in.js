@@ -35,10 +35,10 @@ const renderLogIn = (res, errs) => {
 
 const getLogIn = (req, res) => renderLogIn(res, req.session.messages);
 
-const logInAuthentication = passport.authenticate('local', {
+const logInAuth = passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/log-in',
 	failureMessage: 'Incorrect username or password',
 });
 
-export { getLogIn, logInAuthentication };
+export { getLogIn, logInAuth };

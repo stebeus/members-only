@@ -1,18 +1,27 @@
-import { sql } from '#root/lib/postgres.js';
+import { query } from '#root/lib/pg.js';
 
 const createUser = async (fullName, username, password) =>
-	await sql`
-    INSERT INTO users (full_name, username, password, is_member)
-    VALUES (${fullName}, ${username}, ${password}, false)
-  `;
+	await query(
+		`
+		INSERT INTO users (full_name, username, password, is_member, is_admin)
+		VALUES ($1, $2, $3, false, false)
+		`,
+		[fullName, username, password],
+	);
 
 const getUserById = async (id) => {
-	const [user] = await sql`SELECT * FROM users WHERE id = ${id}`;
+	const {
+		rows: [user],
+	} = await query('SELECT * FROM users WHERE id = $1', [id]);
+
 	return user;
 };
 
 const getUserByUsername = async (username) => {
-	const [user] = await sql`SELECT * FROM users WHERE username = ${username}`;
+	const {
+		rows: [user],
+	} = await query('SELECT * FROM users WHERE username = $1', [username]);
+
 	return user;
 };
 

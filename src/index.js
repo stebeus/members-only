@@ -11,9 +11,6 @@ import { forms } from './routes/forms.js';
 import { index } from './routes/index.js';
 
 const app = express();
-
-// Setup
-
 const { dirname } = import.meta;
 const viewsPath = join(dirname, 'views');
 
@@ -28,14 +25,10 @@ app.use(passport.session());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-// App
-
 app.use(index);
 app.use(forms);
 
 app.use(handleNotFoundError);
 app.use(handleError);
-
-// Listener
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

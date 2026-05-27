@@ -1,25 +1,24 @@
-import { constrainToFk } from './queries.js';
-
-const timestamp = 'created_at TIMESTAMPTZ DEFAULT NOW()';
-
-export const tables = [
-	{
-		name: 'users',
-		columns: [
-			'full_name VARCHAR (100) NOT NULL',
-			'username VARCHAR (25) NOT NULL',
-			'password TEXT NOT NULL',
-			'is_member BOOLEAN NOT NULL',
-			timestamp,
-		],
-	},
-	{
-		name: 'posts',
-		columns: [
-			constrainToFk('user'),
-			'title VARCHAR(50) NOT NULL',
-			'content VARCHAR(500) NOT NULL',
-			timestamp,
-		],
-	},
+const timestamps = [
+	'created_at TIMESTAMPTZ DEFAULT NOW()',
+	'updated_at TIMESTAMPTZ',
 ];
+
+export const schema = `
+	CREATE TABLE IF NOT EXISTS users (
+		id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+		full_name VARCHAR (100) NOT NULL,
+		username VARCHAR (25) NOT NULL,
+		password TEXT NOT NULL,
+		is_member BOOLEAN NOT NULL,
+		is_admin BOOLEAN NOT NULL,
+		${timestamps.join(', ')}
+	);
+
+	CREATE TABLE IF NOT EXISTS posts (
+		id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+		user_id BIGINT REFERENCES users (id),
+		title VARCHAR (50) NOT NULL,
+		content VARCHAR(500) NOT NULL,
+		${timestamps[0]}
+	);
+`;

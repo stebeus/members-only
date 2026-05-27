@@ -4,7 +4,7 @@ import { Strategy } from 'passport-local';
 
 import * as model from '#root/models/model.js';
 
-const verifyLocally = async (username, password, done) => {
+const verify = async (username, password, done) => {
 	try {
 		const user = await model.getUserByUsername(username);
 
@@ -24,7 +24,7 @@ const verifyLocally = async (username, password, done) => {
 	}
 };
 
-passport.use(new Strategy(verifyLocally));
+passport.use(new Strategy(verify));
 
 passport.serializeUser(({ id }, done) => done(null, id));
 
