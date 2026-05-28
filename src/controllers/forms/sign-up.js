@@ -3,7 +3,7 @@ import { hash } from 'bcryptjs';
 
 import * as model from '#root/models/model.js';
 
-import { props, renderForm } from './shared.js';
+import { props, renderForm } from './form.js';
 
 const schema = vine.object({
 	fullName: vine.string().trim().alpha({ allowSpaces: true }).maxLength(100),
