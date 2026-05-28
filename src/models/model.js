@@ -25,4 +25,10 @@ const getUserByUsername = async (username) => {
 	return user;
 };
 
-export { createUser, getUserById, getUserByUsername };
+const updateUserMembership = async (id) =>
+	await query(
+		'UPDATE users SET is_member = true, updated_at = NOW() WHERE id = $1',
+		[id],
+	);
+
+export { createUser, getUserById, getUserByUsername, updateUserMembership };
