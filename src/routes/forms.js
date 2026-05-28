@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { getLogIn, logInAuth } from '#root/controllers/forms/log-in.js';
-import { getSignUp, signUp } from '#root/controllers/forms/sign-up.js';
+import { getSignUp, signUp } from '#root/controllers/forms/sign-up/handler.js';
 
 const router = Router();
 

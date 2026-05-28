@@ -8,8 +8,8 @@
 				<form action="<%= action %>" method="post">
 					<% if (locals.errs != null) {%>
 						<ul class="errors">
-							<% for (const { message } of errs) { %>
-								<li class="error"><%= message %></li>
+							<% for (const { msg } of errs) { %>
+								<li class="error"><%= msg %></li>
 							<% } %>
 						</ul>
 					<% } %>

@@ -1,12 +1,9 @@
-import vine from '@vinejs/vine';
+import { validationResult } from 'express-validator';
 
+import { renderForm } from '#root/controllers/forms/form.js';
 import * as model from '#root/models/model.js';
 
-import { renderForm } from './form.js';
-
-const schema = vine.object({
-	secretCode: vine.literal('The Odin Project'),
-});
+import { validations } from './validations.js';
 
 const renderJoinTheClub = (res, errs) =>
 	renderForm(res, {
@@ -19,16 +16,16 @@ const renderJoinTheClub = (res, errs) =>
 
 const getJoinTheClub = (_req, res) => renderJoinTheClub(res);
 
-const joinTheClub = async (req, res) => {
-	try {
-		await vine.validate({ schema, data: req.body });
+const joinTheClub = [
+	validations,
+	async (req, res) => {
+		const errs = validationResult(req);
+		if (!errs.isEmpty()) return renderJoinTheClub(res, errs.array());
 
 		await model.updateUserMembership(req.user.id);
 
 		res.redirect('/');
-	} catch (err) {
-		return renderJoinTheClub(res, err.messages);
-	}
-};
+	},
+];
 
 export { getJoinTheClub, joinTheClub };

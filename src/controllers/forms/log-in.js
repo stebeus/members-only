@@ -1,7 +1,5 @@
 import passport from 'passport';
 
-import { logger } from '#root/lib/pino.js';
-
 import { props, renderForm } from './form.js';
 
 import '#root/lib/auth.js';
@@ -22,8 +20,6 @@ const inputs = [
 ];
 
 const renderLogIn = (res, errs) => {
-	logger.debug(errs);
-
 	renderForm(res, {
 		title: 'Log in',
 		action: '/log-in',

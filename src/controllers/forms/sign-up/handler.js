@@ -1,20 +1,10 @@
-import vine from '@vinejs/vine';
 import { hash } from 'bcryptjs';
+import { matchedData, validationResult } from 'express-validator';
 
+import { props, renderForm } from '#root/controllers/forms/form.js';
 import * as model from '#root/models/model.js';
 
-import { props, renderForm } from './form.js';
-
-const schema = vine.object({
-	fullName: vine.string().trim().alpha({ allowSpaces: true }).maxLength(100),
-	username: vine
-		.string()
-		.trim()
-		.alphaNumeric({ allowUnderscores: true })
-		.maxLength(25),
-	password: vine.string().trim(),
-	confirmPassword: vine.string().sameAs('password'),
-});
+import { validations } from './validations.js';
 
 const inputs = [
 	{
@@ -56,18 +46,19 @@ const renderSignUp = (res, errs) =>
 
 const getSignUp = (_req, res) => renderSignUp(res);
 
-const signUp = async (req, res) => {
-	try {
-		const validatedData = await vine.validate({ schema, data: req.body });
-		const { fullName, username, password } = validatedData;
+const signUp = [
+	validations,
+	async (req, res) => {
+		const errs = validationResult(req);
+		if (!errs.isEmpty()) return renderSignUp(res, errs.array());
+
+		const { fullName, username, password } = matchedData(req);
 		const hashedPassword = await hash(password, 10);
 
 		await model.createUser(fullName, username, hashedPassword);
 
 		res.redirect('/');
-	} catch (err) {
-		return renderSignUp(res, err.messages);
-	}
-};
+	},
+];
 
 export { getSignUp, signUp };
