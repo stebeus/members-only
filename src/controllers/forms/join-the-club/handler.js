@@ -1,11 +1,12 @@
 import { matchedData, validationResult } from 'express-validator';
 
-import { renderForm } from '#root/controllers/forms/form.js';
-import * as model from '#root/models/model.js';
+import { secretCode as secretCodeConstant } from '#root/config/constants.js';
+import { renderForm } from '#root/controllers/forms/render.js';
+import * as userModel from '#root/models/users.js';
 
-import { validations } from './validations.js';
+import { validation } from './validations.js';
 
-const renderJoinTheClub = (res, errs) =>
+const render = (res, errs) =>
 	renderForm(res, {
 		title: 'Join the club',
 		action: '/join-the-club',
@@ -14,22 +15,23 @@ const renderJoinTheClub = (res, errs) =>
 		submissionLabel: 'Join',
 	});
 
-const getJoinTheClub = (_req, res) => renderJoinTheClub(res);
+const getJoinTheClub = (_req, res) => render(res);
 
-const joinTheClub = [
-	validations,
+const joinClub = [
+	validation,
 	async (req, res) => {
 		const errs = validationResult(req);
-		if (!errs.isEmpty()) return renderJoinTheClub(res, errs.array());
+		if (!errs.isEmpty()) return render(res, errs.array());
 
 		const { secretCode } = matchedData(req);
+		const { id } = req.user;
 
-		secretCode === 'Los Angeles: Critical Mass'
-			? await model.updateUserAdmin(req.user.id)
-			: await model.updateUserMembership(req.user.id);
+		secretCode === secretCodeConstant.admin
+			? await userModel.updateAdminStatus(id)
+			: await userModel.updateMemberStatus(id);
 
 		res.redirect('/');
 	},
 ];
 
-export { getJoinTheClub, joinTheClub };
+export { getJoinTheClub, joinClub };
