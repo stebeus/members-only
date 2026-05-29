@@ -5,7 +5,7 @@
 		<div id="root">
 			<h1><%= err.status ?? 500 %></h1>
 			<p><%= err.message %></p>
-			<a href="/">Go back home</a>
+      <%- include('partials/button-link', { href: '/', label: 'Go back home' }) %>
 			<% if (nodeEnv !== 'production') { %>
 			  <pre><%= err.stack %></pre>
 			<% } %>
