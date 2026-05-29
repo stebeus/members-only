@@ -31,7 +31,7 @@ const inputs = [
 	},
 	{
 		label: 'Confirm password',
-		name: 'confirmPassword',
+		name: 'passwordConfirmation',
 		type: 'password',
 		maxLength: maxChar.user.default,
 		...props,
