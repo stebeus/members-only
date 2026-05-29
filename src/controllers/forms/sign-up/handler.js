@@ -57,7 +57,7 @@ const signUp = [
 
 		await model.createUser(fullName, username, hashedPassword);
 
-		res.redirect('/');
+		res.redirect('/log-in');
 	},
 ];
 
