@@ -33,7 +33,7 @@ const renderCreatePost = (res, errs) => {
 	});
 };
 
-const getCreatePost = (_req, res) => renderForm(res);
+const getCreatePost = (_req, res) => renderCreatePost(res);
 
 const createPost = [
 	validations,
