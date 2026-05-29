@@ -1,6 +1,6 @@
 <article>
 	<header>
-		<h4><%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %></h4>
+		<h2><%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %></h2>
 		<p>
 			<span>
 				@<%= locals.user?.is_member ? post.author_username : 'anon' %>

@@ -6,7 +6,7 @@
 			<%- include('partials/navbar') %>
 			<main>
 				<% if (locals.user != null) { %>
-					<h2>Welcome, <%= user.full_name %>!</h2>
+					<p>Welcome, <%= user.full_name %>!</p>
 
 					<% if (!user.is_member) { %>
 						<p>
