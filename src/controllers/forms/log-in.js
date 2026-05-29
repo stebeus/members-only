@@ -2,8 +2,6 @@ import passport from 'passport';
 
 import { props, renderForm } from './form.js';
 
-import '#root/lib/auth.js';
-
 const inputs = [
 	{
 		label: 'Username',
