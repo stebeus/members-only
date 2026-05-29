@@ -6,30 +6,19 @@
 			<%- include('partials/navbar') %>
 			<main>
 				<% if (locals.user != null) { %>
-					<h2>Welcome, <%= locals.user?.full_name %>!</h2>
+					<h2>Welcome, <%= user.full_name %>!</h2>
+
+					<% if (!user.is_member) { %>
+						<p>
+							<a href="/join-the-club">Join the club</a>
+							to see usernames and dates.
+						</p>
+        	<% } %>
 				<% } %>
 
 				<ul>
-					<% for (const post of posts ) { %>
-						<li>
-							<article>
-								<h3><%= locals.user?.is_member ? post.title : '***' %></h3>
-								<h4><%= locals.user?.is_member ? post.full_name : '***' %></h4>
-								<h5><%= locals.user?.is_member ? post.username : '***' %></h5>
-
-								<time
-									datetime="<%= locals.user?.is_member ? post.created_at : '***' %>"
-								>
-									<%= locals.user?.is_member ? post.created_at : '***' %>
-								</time>
-
-								<% if (locals.user?.is_admin) { %>
-									<a href="/delete-post/<%= post.id %>">Delete post</a>
-								<% } %>
-
-								<p><%= post.content %></p>
-							</article>
-						</li>
+					<% for (const post of posts) { %>
+						<li><%- include('partials/post', { post }) %></li>
 					<% } %>
 				</ul>
 			</main>
