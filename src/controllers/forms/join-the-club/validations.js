@@ -1,9 +1,12 @@
 import { body } from 'express-validator';
 
-const membershipCodeValidation = body('secretCode')
-	.equals('The Odin Project')
+const isSecretCode = (value) =>
+	value === 'The Odin Project' || value === 'Los Angeles: Critical Mass';
+
+const secretCodeValidation = body('secretCode')
+	.custom(isSecretCode)
 	.withMessage('Incorrect secret code');
 
-const validations = [membershipCodeValidation];
+const validations = [secretCodeValidation];
 
 export { validations };

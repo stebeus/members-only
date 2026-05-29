@@ -1,4 +1,4 @@
-import { validationResult } from 'express-validator';
+import { matchedData, validationResult } from 'express-validator';
 
 import { renderForm } from '#root/controllers/forms/form.js';
 import * as model from '#root/models/model.js';
@@ -22,7 +22,11 @@ const joinTheClub = [
 		const errs = validationResult(req);
 		if (!errs.isEmpty()) return renderJoinTheClub(res, errs.array());
 
-		await model.updateUserMembership(req.user.id);
+		const { secretCode } = matchedData(req);
+
+		secretCode === 'Los Angeles: Critical Mass'
+			? await model.updateUserAdmin(req.user.id)
+			: await model.updateUserMembership(req.user.id);
 
 		res.redirect('/');
 	},

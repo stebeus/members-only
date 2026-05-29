@@ -25,6 +25,16 @@ const getUserByUsername = async (username) => {
 	return user;
 };
 
+const updateUserAdmin = async (id) =>
+	await query(
+		`
+		UPDATE users
+		SET is_member = true, is_admin = true, updated_at = NOW()
+		WHERE id = $1
+		`,
+		[id],
+	);
+
 const updateUserMembership = async (id) =>
 	await query(
 		'UPDATE users SET is_member = true, updated_at = NOW() WHERE id = $1',
@@ -70,5 +80,6 @@ export {
 	getAllPostsWithUsers,
 	getUserById,
 	getUserByUsername,
+	updateUserAdmin,
 	updateUserMembership,
 };
