@@ -1,16 +1,17 @@
 import { matchedData, validationResult } from 'express-validator';
 
-import { renderForm } from '#root/controllers/forms/form.js';
-import * as model from '#root/models/model.js';
+import { maxChar } from '#root/config/constants.js';
+import { renderForm } from '#root/controllers/forms/render.js';
+import * as postModel from '#root/models/posts.js';
 
-import { validations } from './validations.js';
+import { validations } from './validators.js';
 
 const fields = {
 	inputs: [
 		{
 			label: 'Title',
 			name: 'title',
-			maxLength: 50,
+			maxLength: maxChar.post.title,
 			isRequired: true,
 		},
 	],
@@ -18,12 +19,12 @@ const fields = {
 	textarea: {
 		label: 'Content',
 		name: 'content',
-		maxLength: 500,
+		maxLength: maxChar.post.content,
 		isRequired: true,
 	},
 };
 
-const renderCreatePost = (res, errs) => {
+const render = (res, errs) =>
 	renderForm(res, {
 		title: 'Create post',
 		action: '/create-post',
@@ -31,26 +32,25 @@ const renderCreatePost = (res, errs) => {
 		...fields,
 		submissionLabel: 'Post',
 	});
-};
 
-const getCreatePost = (_req, res) => renderCreatePost(res);
+const getCreatePost = (_req, res) => render(res);
 
 const createPost = [
 	validations,
 	async (req, res) => {
 		const errs = validationResult(req);
-		if (!errs.isEmpty()) return renderCreatePost(res, errs.array());
+		if (!errs.isEmpty()) return render(res, errs.array());
 
 		const { title, content } = matchedData(req);
 
-		await model.createPost(req.user.id, title, content);
+		await postModel.createPost(req.user.id, title, content);
 
 		res.redirect('/');
 	},
 ];
 
 const deletePost = async (req, res) => {
-	await model.deletePost(req.params.postId);
+	await postModel.deletePost(req.params.postId);
 	res.redirect('/');
 };
 
