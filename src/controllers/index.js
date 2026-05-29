@@ -1,7 +1,7 @@
-import { getAllPostsWithUsers } from '#root/models/model.js';
+import * as postModel from '#root/models/posts.js';
 
-const getIndex = async (req, res) => {
-	const posts = await getAllPostsWithUsers();
+const getIndex = async (_req, res) => {
+	const posts = await postModel.getAllPosts();
 	res.render('index', { posts });
 };
 
