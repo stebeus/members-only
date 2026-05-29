@@ -2,6 +2,38 @@
 <html lang="en">
 	<%- include('partials/metadata', locals.title) %>
 	<body>
-		<div id="root"></div>
+		<div id="root">
+			<%- include('partials/navbar') %>
+			<main>
+				<% if (locals.user != null) { %>
+					<h2>Welcome, <%= locals.user?.full_name %>!</h2>
+				<% } %>
+
+				<ul>
+					<% for (const post of posts ) { %>
+						<li>
+							<article>
+								<h3><%= locals.user?.is_member ? post.title : '***' %></h3>
+								<h4><%= locals.user?.is_member ? post.full_name : '***' %></h4>
+								<h5><%= locals.user?.is_member ? post.username : '***' %></h5>
+
+								<time
+									datetime="<%= locals.user?.is_member ? post.created_at : '***' %>"
+								>
+									<%= locals.user?.is_member ? post.created_at : '***' %>
+								</time>
+
+								<% if (locals.user?.is_admin) { %>
+									<a href="/delete-post/<%= post.id %>">Delete post</a>
+								<% } %>
+
+								<p><%= post.content %></p>
+							</article>
+						</li>
+					<% } %>
+				</ul>
+			</main>
+			<%- include('partials/footer') %>
+		</div>
 	</body>
 </html>
