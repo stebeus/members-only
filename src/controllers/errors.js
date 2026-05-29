@@ -1,6 +1,6 @@
 import createHttpError from 'http-errors';
 
-const handleNotFoundError = (req, res, next) => next(createHttpError(404));
+const handleNotFoundError = (_req, _res, next) => next(createHttpError(404));
 
 const handleError = (err, req, res, next) => {
 	if (res.headersSent) return next(err);
