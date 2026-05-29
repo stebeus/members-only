@@ -1,0 +1,23 @@
+<article>
+	<header>
+		<h4><%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %></h4>
+		<p>
+			<span>
+				@<%= locals.user?.is_member ? post.author_username : 'anon' %>
+			</span>
+			<time datetime="<%= locals.user?.is_member ? post.created_at : null %>">
+				<%= locals.user?.is_member ? post.created_at : 'Unknown date' %>
+			</time>
+		</p>
+	</header>
+
+	<h3><%= post.title %></h3>
+	<p><%= post.content %></p>
+
+	<% if (locals.user?.is_admin) { %>
+		<%- include('button-link', {
+			href: `/delete-post/${post.id}`,
+			label: 'Delete post',
+		}) %>
+	<% } %>
+</article>
