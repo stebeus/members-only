@@ -31,12 +31,19 @@ const updateUserMembership = async (id) =>
 		[id],
 	);
 
+const createPost = async (userId, title, content) =>
+	await query(
+		'INSERT INTO posts (user_id, title, content) VALUES ($1, $2, $3)',
+		[userId, title, content],
+	);
+
 const getAllPosts = async () => {
 	const { rows } = await query('SELECT * FROM posts');
 	return rows;
 };
 
 export {
+	createPost,
 	createUser,
 	getAllPosts,
 	getUserById,
