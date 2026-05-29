@@ -12,6 +12,7 @@ import { forms } from './routes/forms.js';
 import { index } from './routes/index.js';
 
 const app = express();
+
 const { dirname } = import.meta;
 const viewsPath = join(dirname, 'views');
 
