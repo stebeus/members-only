@@ -1,4 +1,4 @@
-const maxChar = {
+export const maxChar = {
 	user: {
 		default: 100,
 		username: 25,
@@ -8,10 +8,3 @@ const maxChar = {
 		content: 500,
 	},
 };
-
-const secretCode = {
-	admin: 'Los Angeles: Critical Mass',
-	club: 'The Odin Project',
-};
-
-export { maxChar, secretCode };

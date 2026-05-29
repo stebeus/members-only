@@ -1,9 +1,8 @@
 import { body } from 'express-validator';
 
-import { secretCode } from '#root/config/constants.js';
+import { ADMIN_CODE, CLUB_CODE } from '#root/config/env.js';
 
-const isSecretCode = (value) =>
-	value === secretCode.club || value === secretCode.admin;
+const isSecretCode = (value) => value === CLUB_CODE || value === ADMIN_CODE;
 
 export const validation = body('secretCode')
 	.custom(isSecretCode)

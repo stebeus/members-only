@@ -1,6 +1,6 @@
 import { matchedData, validationResult } from 'express-validator';
 
-import { secretCode as secretCodeConstant } from '#root/config/constants.js';
+import { ADMIN_CODE } from '#root/config/env.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as userModel from '#root/models/users.js';
 
@@ -26,7 +26,7 @@ const joinClub = [
 		const { secretCode } = matchedData(req);
 		const { id } = req.user;
 
-		secretCode === secretCodeConstant.admin
+		secretCode === ADMIN_CODE
 			? await userModel.updateAdminStatus(id)
 			: await userModel.updateMemberStatus(id);
 
