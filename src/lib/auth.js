@@ -2,11 +2,11 @@ import { compare } from 'bcryptjs';
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 
-import * as model from '#root/models/model.js';
+import * as userModel from '#root/models/users.js';
 
 const verify = async (username, password, done) => {
 	try {
-		const user = await model.getUserByUsername(username);
+		const user = await userModel.getUserByUsername(username);
 
 		if (user == null) {
 			return done(null, false, { message: 'Incorrect username' });
@@ -30,7 +30,7 @@ passport.serializeUser(({ id }, done) => done(null, id));
 
 passport.deserializeUser(async (id, done) => {
 	try {
-		const user = await model.getUserById(id);
+		const user = await userModel.getUserById(id);
 		done(null, user);
 	} catch (err) {
 		done(err);

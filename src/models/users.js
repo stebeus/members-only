@@ -25,7 +25,7 @@ const getUserByUsername = async (username) => {
 	return user;
 };
 
-const updateUserAdmin = async (id) =>
+const updateAdminStatus = async (id) =>
 	await query(
 		`
 		UPDATE users
@@ -35,51 +35,16 @@ const updateUserAdmin = async (id) =>
 		[id],
 	);
 
-const updateUserMembership = async (id) =>
+const updateMemberStatus = async (id) =>
 	await query(
 		'UPDATE users SET is_member = true, updated_at = NOW() WHERE id = $1',
 		[id],
 	);
 
-const createPost = async (userId, title, content) =>
-	await query(
-		'INSERT INTO posts (user_id, title, content) VALUES ($1, $2, $3)',
-		[userId, title, content],
-	);
-
-const getAllPosts = async () => {
-	const { rows } = await query('SELECT * FROM posts');
-	return rows;
-};
-
-const deletePost = async (id) =>
-	await query('DELETE FROM posts WHERE id = $1', [id]);
-
-const getAllPostsWithUsers = async () => {
-	const { rows } = await query(`
-		SELECT
-			posts.id,
-			users.full_name,
-			users.username,
-			posts.title,
-			posts.content,
-			posts.created_at
-		FROM posts
-		INNER JOIN users
-		ON posts.user_id = users.id
-	`);
-
-	return rows;
-};
-
 export {
-	createPost,
 	createUser,
-	deletePost,
-	getAllPosts,
-	getAllPostsWithUsers,
 	getUserById,
 	getUserByUsername,
-	updateUserAdmin,
-	updateUserMembership,
+	updateAdminStatus,
+	updateMemberStatus,
 };
