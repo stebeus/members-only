@@ -31,4 +31,15 @@ const updateUserMembership = async (id) =>
 		[id],
 	);
 
-export { createUser, getUserById, getUserByUsername, updateUserMembership };
+const getAllPosts = async () => {
+	const { rows } = await query('SELECT * FROM posts');
+	return rows;
+};
+
+export {
+	createUser,
+	getAllPosts,
+	getUserById,
+	getUserByUsername,
+	updateUserMembership,
+};
