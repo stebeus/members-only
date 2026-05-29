@@ -11,7 +11,7 @@ const createNameValidation = (
 		.isAlphanumeric('en-US', { ignore })
 		.withMessage(`${fieldLabel} must only contain alphanumeric characters`)
 		.isLength({ max: maxLength })
-		.withMessage(`${fieldLabel} must not exceed ${maxLength}`);
+		.withMessage(`${fieldLabel} must not exceed ${maxLength} characters`);
 
 const fullNameValidation = createNameValidation(body, {
 	fieldName: 'fullName',
