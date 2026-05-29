@@ -1,6 +1,6 @@
 import { Client } from 'pg';
 
-import { DB_URL } from '#root/config.js';
+import { DB_URL } from '#root/config/env.js';
 import { logger } from '#root/lib/pino.js';
 
 import { schema } from './schema.js';

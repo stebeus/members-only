@@ -1,7 +1,7 @@
 import connectPgSimple from 'connect-pg-simple';
 import session from 'express-session';
 
-import { SESSION_SECRET } from '#root/config.js';
+import { SESSION_SECRET } from '#root/config/env.js';
 
 import { pool } from './pg.js';
 

@@ -1,3 +1,5 @@
+import { maxChar } from '#root/config/constants.js';
+
 const timestamps = [
 	'created_at TIMESTAMPTZ DEFAULT NOW()',
 	'updated_at TIMESTAMPTZ',
@@ -8,9 +10,9 @@ const [updatedAt] = timestamps;
 export const schema = `
 	CREATE TABLE IF NOT EXISTS users (
 		id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-		full_name VARCHAR (100) NOT NULL,
-		username VARCHAR (25) NOT NULL,
-		password VARCHAR(100) NOT NULL,
+		full_name VARCHAR (${maxChar.user.default}) NOT NULL,
+		username VARCHAR (${maxChar.user.username}) NOT NULL,
+		password VARCHAR(${maxChar.user.default}) NOT NULL,
 		is_member BOOLEAN NOT NULL,
 		is_admin BOOLEAN NOT NULL,
 		${timestamps}
@@ -19,8 +21,8 @@ export const schema = `
 	CREATE TABLE IF NOT EXISTS posts (
 		id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 		user_id BIGINT REFERENCES users (id),
-		title VARCHAR (50) NOT NULL,
-		content VARCHAR(500) NOT NULL,
+		title VARCHAR (${maxChar.post.title}) NOT NULL,
+		content VARCHAR(${maxChar.post.content}) NOT NULL,
 		${updatedAt}
 	);
 `;

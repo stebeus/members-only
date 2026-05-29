@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import express from 'express';
 import passport from 'passport';
 
-import { PORT } from './config.js';
+import { PORT } from './config/env.js';
 import { handleError, handleNotFoundError } from './controllers/errors.js';
 import { setCurrentUser } from './lib/auth.js';
 import { expressSession } from './lib/express-session.js';

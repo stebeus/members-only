@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 
-import { DB_URL } from '#root/config.js';
+import { DB_URL } from '#root/config/env.js';
 
 const pool = new Pool({
 	connectionString: DB_URL,
