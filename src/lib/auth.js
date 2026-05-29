@@ -36,3 +36,10 @@ passport.deserializeUser(async (id, done) => {
 		done(err);
 	}
 });
+
+const setCurrentUser = (req, res, next) => {
+	res.locals.user = req.user;
+	next();
+};
+
+export { setCurrentUser };

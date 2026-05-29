@@ -5,6 +5,7 @@ import passport from 'passport';
 
 import { PORT } from './config.js';
 import { handleError, handleNotFoundError } from './controllers/errors.js';
+import { setCurrentUser } from './lib/auth.js';
 import { expressSession } from './lib/express-session.js';
 import { logger, pino } from './lib/pino.js';
 import { forms } from './routes/forms.js';
@@ -21,6 +22,7 @@ app.use(pino);
 
 app.use(expressSession);
 app.use(passport.session());
+app.use(setCurrentUser);
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
