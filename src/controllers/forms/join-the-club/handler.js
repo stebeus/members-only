@@ -4,7 +4,7 @@ import { secretCode as secretCodeConstant } from '#root/config/constants.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as userModel from '#root/models/users.js';
 
-import { validation } from './validations.js';
+import { validation } from './validators.js';
 
 const render = (res, errs) =>
 	renderForm(res, {
