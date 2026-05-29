@@ -1,0 +1,23 @@
+<header class="navbar">
+  <h1 class="logo" title="Homepage">
+    <a href="/">Members Only</a>
+  </h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+
+      <% if (locals.user == null) { %>
+        <li><a href="/sign-up">Sign up</a></li>
+        <li><a href="/log-in">Log in</a></li>
+      <% } else { %>
+        <li><a href="/post">Post</a></li>
+
+        <% if (!user.is_member) { %>
+          <li><a href="/join-the-club">Join the club</a></li>
+        <% } %>
+
+        <li><a href="/log-out">Log out</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
