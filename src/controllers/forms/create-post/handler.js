@@ -1,8 +1,8 @@
 import { matchedData, validationResult } from 'express-validator';
 
+import { renderForm } from '#root/controllers/forms/form.js';
 import * as model from '#root/models/model.js';
 
-import { renderForm } from './form.js';
 import { validations } from './validations.js';
 
 const fields = {

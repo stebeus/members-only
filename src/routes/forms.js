@@ -1,13 +1,16 @@
 import { Router } from 'express';
 
 import {
+	createPost,
+	deletePost,
+	getCreatePost,
+} from '#root/controllers/forms/create-post/handler.js';
+import {
 	getJoinTheClub,
 	joinTheClub,
 } from '#root/controllers/forms/join-the-club/handler.js';
 import { getLogIn, logInAuth } from '#root/controllers/forms/log-in.js';
-import { getCreatePost } from '#root/controllers/forms/post.js';
 import { getSignUp, signUp } from '#root/controllers/forms/sign-up/handler.js';
-import { createPost, deletePost } from '#root/models/model.js';
 
 const router = Router();
 
