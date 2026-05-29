@@ -45,11 +45,29 @@ const getAllPosts = async () => {
 const deletePost = async (id) =>
 	await query('DELETE FROM posts WHERE id = $1', [id]);
 
+const getAllPostsWithUsers = async () => {
+	const { rows } = await query(`
+		SELECT
+			posts.id,
+			users.full_name,
+			users.username,
+			posts.title,
+			posts.content,
+			posts.created_at
+		FROM posts
+		INNER JOIN users
+		ON posts.user_id = users.id
+	`);
+
+	return rows;
+};
+
 export {
 	createPost,
 	createUser,
 	deletePost,
 	getAllPosts,
+	getAllPostsWithUsers,
 	getUserById,
 	getUserByUsername,
 	updateUserMembership,
