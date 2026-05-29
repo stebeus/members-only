@@ -12,6 +12,7 @@ export const expressSession = session({
 	saveUninitialized: false,
 	secret: SESSION_SECRET,
 	store: new pgSession({
+		createTableIfMissing: true,
 		pool,
 	}),
 });
