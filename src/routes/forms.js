@@ -17,7 +17,7 @@ const router = Router();
 router.get('/sign-up', getSignUp);
 router.get('/log-in', getLogIn);
 router.get('/create-post', getCreatePost);
-router.get('/delete-post', deletePost);
+router.get('/delete-post/:postId', deletePost);
 router.get('/join-the-club', getJoinTheClub);
 
 router.post('/sign-up', signUp);
