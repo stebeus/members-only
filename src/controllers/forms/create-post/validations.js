@@ -1,5 +1,5 @@
 import { maxChar } from '#root/config/constants.js';
-import { createLengthChain } from '#root/controllers/forms/validators.js';
+import { createLengthChain } from '#root/controllers/forms/validations.js';
 
 const title = createLengthChain({
 	fieldName: 'title',

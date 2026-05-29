@@ -4,7 +4,7 @@ import { maxChar } from '#root/config/constants.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as postModel from '#root/models/posts.js';
 
-import { validations } from './validators.js';
+import { validations } from './validations.js';
 
 const fields = {
 	inputs: [

@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-import { createLengthChain } from '#root/controllers/forms/validators.js';
+import { createLengthChain } from '#root/controllers/forms/validations.js';
 
 const createNameChain = ({
 	fieldName,

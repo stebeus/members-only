@@ -4,7 +4,7 @@ import { ADMIN_CODE } from '#root/config/env.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as userModel from '#root/models/users.js';
 
-import { validation } from './validators.js';
+import { validation } from './validations.js';
 
 const render = (res, errs) =>
 	renderForm(res, {
