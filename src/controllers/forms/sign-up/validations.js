@@ -45,6 +45,6 @@ const matchPasswords = (value, { req }) => value === req.body.password;
 
 const passwordConfirmation = body('passwordConfirmation')
 	.custom(matchPasswords)
-	.withMessage('Passwords must match');
+	.withMessage('passwords must match');
 
 export const validations = [fullName, username, password, passwordConfirmation];
