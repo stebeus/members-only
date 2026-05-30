@@ -1,8 +1,10 @@
-<label class="field">
+<label class="field flex flex-col gap-2xs">
 	<span class="label"><%= label %></span>
   <textarea
+    class="border p-xs"
     name="<%= name %>"
     maxlength="<%= locals.maxLength %>"
+    rows="10"
     <%- locals.isRequired ? 'required' : '' %>
   ></textarea>
 </label>

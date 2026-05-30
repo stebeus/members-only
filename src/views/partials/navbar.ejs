@@ -1,15 +1,19 @@
-<header class="navbar">
+<header class="flex center-items justify-between p-xs">
   <h1 class="logo" title="Homepage">
     <a href="/">Members Only</a>
   </h1>
   <nav>
-    <ul>
+    <ul class="flex center-items gap-m">
       <li><a href="/">Home</a></li>
 
       <% if (locals.user == null) { %>
         <li><a href="/log-in">Log in</a></li>
         <li>
-          <%- include('button-link', { href: '/sign-up', label: 'Sign up' }) %>
+          <%- include('button-link', {
+            class:'--accent',
+            href: '/sign-up',
+            label: 'Sign up',
+          }) %>
         </li>
       <% } else { %>
         <li><a href="/create-post">Create post</a></li>

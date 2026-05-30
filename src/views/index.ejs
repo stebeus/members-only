@@ -2,13 +2,13 @@
 <html lang="en">
 	<%- include('partials/metadata', locals.title) %>
 	<body>
-		<div id="root">
+		<div id="root" class="grid grid-template-root">
 			<%- include('partials/navbar') %>
-			<main>
+			<main class="border-bottom border-top flex flex-col gap-m p-m">
 				<% if (locals.user == null) { %>
 					<p><a href="/sign-up">Sign up</a> to create posts.</p>
 				<% } else { %>
-					<p>Welcome, <%= user.full_name %>!</p>
+					<p class="center-text">Welcome, <%= user.full_name %>!</p>
 
 					<% if (!user.is_member) { %>
 						<p>
@@ -18,7 +18,7 @@
         	<% } %>
 				<% } %>
 
-				<ul>
+				<ul class="flex flex-col gap-m">
 					<% for (const post of posts) { %>
 						<li><%- include('partials/post', { post }) %></li>
 					<% } %>

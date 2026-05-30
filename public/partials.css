@@ -1,0 +1,23 @@
+@scope (.button) {
+	:scope {
+		padding: var(--size-xs) var(--size-m);
+		font-weight: 500;
+		background-color: white;
+
+		&:is(.--accent) {
+			color: white;
+			background-color: black;
+		}
+
+		&:is(.--delete) {
+			color: white;
+			background-color: red;
+		}
+	}
+}
+
+@scope (.field) {
+	textarea {
+		resize: vertical;
+	}
+}

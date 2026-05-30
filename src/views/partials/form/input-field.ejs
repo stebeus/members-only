@@ -1,6 +1,7 @@
-<label class="field">
+<label class="field flex flex-col gap-2xs">
 	<span class="label"><%= label %></span>
 	<input
+		class="border p-xs"
 		type="<%= locals.type ?? 'text' %>"
 		name="<%= name %>"
 		placeholder="<%= locals.placeholder %>"

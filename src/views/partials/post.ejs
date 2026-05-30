@@ -1,8 +1,8 @@
-<article>
+<article class="border flex flex-col gap-xs p-xl">
 	<header>
 		<h2><%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %></h2>
 		<p>
-			<span>
+			<span class="circle-separator">
 				@<%= locals.user?.is_member ? post.author_username : 'anon' %>
 			</span>
 			<time datetime="<%= locals.user?.is_member ? post.created_at : null %>">
@@ -16,6 +16,7 @@
 
 	<% if (locals.user?.is_admin) { %>
 		<%- include('button-link', {
+			class: '--delete',
 			href: `/delete-post/${post.id}`,
 			label: 'Delete post',
 		}) %>

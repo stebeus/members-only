@@ -1,1 +1,6 @@
-<a class="button" href="<%= href %>"><%= label %></a>
+<a
+  class="button border center-xy flex hover<%= ` ${locals.class}` ?? '' %>"
+  href="<%= href %>"
+>
+  <%= label %>
+</a>

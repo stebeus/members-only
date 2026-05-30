@@ -1,1 +1,6 @@
-<button class="button" type="submit"><%= label %></button>
+<button
+  class="button border flex center-xy hover<%= ` ${locals.class}` ?? '' %>"
+  type="submit"
+>
+  <%= label %>
+</button>
