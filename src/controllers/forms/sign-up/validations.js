@@ -1,6 +1,7 @@
 import { body } from 'express-validator';
 
 import { createLengthChain } from '#root/controllers/forms/validations.js';
+import * as userModel from '#root/models/users.js';
 
 const createNameChain = ({
 	fieldName,
@@ -26,12 +27,17 @@ const fullName = createNameChain({
 	max: 100,
 });
 
+const isUsernameTaken = async (value) => {
+	const isUsernameTaken = await userModel.isUsernameTaken(value);
+	if (isUsernameTaken) throw new Error('username has been taken');
+};
+
 const username = createNameChain({
 	fieldName: 'username',
 	charFn: 'isAlphanumeric',
 	ignore: '_',
 	max: 25,
-});
+}).custom(isUsernameTaken);
 
 const password = createLengthChain({ fieldName: 'password', max: 100 });
 
