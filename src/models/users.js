@@ -9,10 +9,15 @@ const createUser = async (fullName, username, password) =>
 		[fullName, username, password],
 	);
 
-const isUsernameTaken = async (username) =>
-	await query('SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)', [
+const isUsernameTaken = async (username) => {
+	const {
+		rows: [{ exists }],
+	} = await query('SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)', [
 		username,
 	]);
+
+	return exists;
+};
 
 const getUserById = async (id) => {
 	const {
