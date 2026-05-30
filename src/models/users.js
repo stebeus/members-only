@@ -9,6 +9,11 @@ const createUser = async (fullName, username, password) =>
 		[fullName, username, password],
 	);
 
+const isUsernameTaken = async (username) =>
+	await query('SELECT EXISTS (SELECT 1 FROM users WHERE username = $1)', [
+		username,
+	]);
+
 const getUserById = async (id) => {
 	const {
 		rows: [user],
@@ -45,6 +50,7 @@ export {
 	createUser,
 	getUserById,
 	getUserByUsername,
+	isUsernameTaken,
 	updateAdminStatus,
 	updateMemberStatus,
 };
