@@ -5,7 +5,9 @@
 		<div id="root">
 			<%- include('partials/navbar') %>
 			<main>
-				<% if (locals.user != null) { %>
+				<% if (locals.user == null) { %>
+					<p><a href="/sign-up">Sign up</a> to create posts.</p>
+				<% } else { %>
 					<p>Welcome, <%= user.full_name %>!</p>
 
 					<% if (!user.is_member) { %>
