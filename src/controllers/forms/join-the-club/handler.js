@@ -1,6 +1,6 @@
 import { matchedData, validationResult } from 'express-validator';
 
-import { ADMIN_CODE } from '#root/config/env.js';
+import { ADMIN_CODE } from '#root/config.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as userModel from '#root/models/users.js';
 
