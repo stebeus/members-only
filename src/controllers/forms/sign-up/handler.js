@@ -1,7 +1,6 @@
 import { hash } from 'bcryptjs';
 import { matchedData, validationResult } from 'express-validator';
 
-import { maxChar } from '#root/config/constants.js';
 import { props, renderForm } from '#root/controllers/forms/render.js';
 import * as userModel from '#root/models/users.js';
 
@@ -12,28 +11,28 @@ const inputs = [
 		label: 'Full name',
 		name: 'fullName',
 		placeholder: 'John Doe',
-		maxLength: maxChar.user.default,
+		maxLength: 100,
 		...props,
 	},
 	{
 		label: 'Username',
 		name: 'username',
 		placeholder: 'john_doe123',
-		maxLength: maxChar.user.username,
+		maxLength: 25,
 		...props,
 	},
 	{
 		label: 'Password',
 		name: 'password',
 		type: 'password',
-		maxLength: maxChar.user.default,
+		maxLength: 100,
 		...props,
 	},
 	{
 		label: 'Confirm password',
 		name: 'passwordConfirmation',
 		type: 'password',
-		maxLength: maxChar.user.default,
+		maxLength: 100,
 		...props,
 	},
 ];

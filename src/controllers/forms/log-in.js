@@ -1,21 +1,19 @@
 import passport from 'passport';
 
-import { maxChar } from '#root/config/constants.js';
-
 import { props, renderForm } from './render.js';
 
 const inputs = [
 	{
 		label: 'Username',
 		name: 'username',
-		maxLength: maxChar.user.username,
+		maxLength: 25,
 		...props,
 	},
 	{
 		label: 'Password',
 		name: 'password',
 		type: 'password',
-		maxLength: maxChar.user.default,
+		maxLength: 100,
 		...props,
 	},
 ];

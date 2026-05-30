@@ -1,6 +1,5 @@
 import { matchedData, validationResult } from 'express-validator';
 
-import { maxChar } from '#root/config/constants.js';
 import { renderForm } from '#root/controllers/forms/render.js';
 import * as postModel from '#root/models/posts.js';
 
@@ -11,7 +10,7 @@ const fields = {
 		{
 			label: 'Title',
 			name: 'title',
-			maxLength: maxChar.post.title,
+			maxLength: 50,
 			isRequired: true,
 		},
 	],
@@ -19,7 +18,7 @@ const fields = {
 	textarea: {
 		label: 'Content',
 		name: 'content',
-		maxLength: maxChar.post.content,
+		maxLength: 500,
 		isRequired: true,
 	},
 };
