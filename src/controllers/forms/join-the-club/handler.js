@@ -6,12 +6,12 @@ import * as userModel from '#root/models/users.js';
 
 import { validation } from './validations.js';
 
-const render = (res, errs) =>
+const render = (res, errs, helperText) =>
 	renderForm(res, {
 		title: 'Join the club',
 		action: '/join-the-club',
 		errs,
-		inputs: [{ label: 'Secret code', name: 'secretCode' }],
+		inputs: [{ label: 'Secret code', name: 'secretCode', helperText }],
 		submissionLabel: 'Join',
 	});
 
@@ -21,7 +21,10 @@ const joinClub = [
 	validation,
 	async (req, res) => {
 		const errs = validationResult(req);
-		if (!errs.isEmpty()) return render(res, errs.array());
+
+		if (!errs.isEmpty()) {
+			return render(res, errs.array(), 'Hint: check the GitHub repository');
+		}
 
 		const { secretCode } = matchedData(req);
 		const { id } = req.user;

@@ -12,6 +12,7 @@ const fields = {
 			name: 'title',
 			maxLength: 50,
 			isRequired: true,
+			helperText: 'Maximum characters: 50',
 		},
 	],
 	hasTextarea: true,
@@ -20,6 +21,7 @@ const fields = {
 		name: 'content',
 		maxLength: 500,
 		isRequired: true,
+		helperText: 'Maximum characters: 500',
 	},
 };
 

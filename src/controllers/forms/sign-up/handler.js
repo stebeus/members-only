@@ -19,6 +19,7 @@ const inputs = [
 		name: 'username',
 		placeholder: 'john_doe123',
 		maxLength: 25,
+		helperText: 'Maximum characters: 25',
 		...props,
 	},
 	{
