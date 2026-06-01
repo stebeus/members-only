@@ -18,6 +18,7 @@ const getAllPosts = async () => {
 		FROM posts
 		INNER JOIN users
 		ON posts.user_id = users.id
+		ORDER BY posts.created_at DESC
 	`);
 
 	return rows;
