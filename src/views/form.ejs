@@ -12,7 +12,6 @@
 						action="<%= action %>"
 						method="post"
 					>
-
 						<% if (locals.errs != null) { %>
 							<%- include('partials/alert', {
 								level: 'danger',
@@ -20,7 +19,7 @@
 									<p class="fw-medium">
 										The form contains the following errors:
 									<p>
-									${include('partials/form/errors', { errs })}
+									${include('partials/form/errors', errs)}
 								`,
 							}) %>
 						<% } %>

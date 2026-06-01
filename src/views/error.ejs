@@ -7,7 +7,7 @@
 			<p><%= err.message %></p>
       <%- include('partials/button-link', {
 				href: '/',
-				label: 'Go back home'
+				label: 'Go back home',
 			}) %>
 			<% if (nodeEnv !== 'production') { %>
 			  <pre class="border border-radius fs-s p-xl"><%= err.stack %></pre>
