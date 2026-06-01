@@ -18,7 +18,7 @@
 		--color-hoverInverted: black;
 
 		--hue-danger: 30;
-		--hue-success: 150;
+		--hue-info: 210;
 		--hue-admin: 300;
 
 		--tint-base: oklch(from var(--color-base) l 0.025 h);
