@@ -54,4 +54,14 @@
 			--tint-content: oklch(0.5 0.2 0);
 		}
 	}
+
+	#root {
+		font-family: var(--ff-sans);
+		color: var(--color-contentMuted);
+		background-color: var(--color-base);
+
+		&:where(.grid) {
+			grid-template: auto 1fr auto / minmax(0, 1fr);
+		}
+	}
 }
