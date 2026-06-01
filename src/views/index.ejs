@@ -4,7 +4,7 @@
 	<body>
 		<div id="root" class="grid">
 			<%- include('partials/navbar') %>
-			<main class="flex flex-col gap-m max-w mx-auto p-m">
+			<main class="flex flex-col gap-m max-w mx-auto p-m w-full">
 				<% if (locals.user == null) { %>
 					<%- include('partials/alert', {
 						children: `
