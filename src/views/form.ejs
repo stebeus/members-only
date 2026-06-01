@@ -2,30 +2,38 @@
 <html lang="en">
 	<%- include('partials/metadata', locals.title) %>
 	<body>
-		<div id="root">
+		<div id="root" class="grid">
 			<%- include('partials/navbar') %>
-			<main>
-				<fieldset>
-					<legend><%= locals.title %></legend>
+			<main class="max-w mx-auto p-m w-full">
+				<fieldset class="border border-radius flex flex-col gap-xl p-xl">
+					<legend class="fs-l fw-bold"><%= locals.title %></legend>
+					<form
+						class="flex flex-col gap-xl pt-xl"
+						action="<%= action %>"
+						method="post"
+					>
 
-					<form action="<%= action %>" method="post">
-						<% if (locals.errs != null) {%>
-							<ul class="errors">
-								<% for (const err of errs) { %>
-									<li class="error"><%= err.msg ?? err %></li>
-								<% } %>
-							</ul>
+						<% if (locals.errs != null) { %>
+							<%- include('partials/alert', {
+								level: 'danger',
+								children: `
+									<p class="fw-medium">
+										The form contains the following errors:
+									<p>
+									${include('partials/form/errors', { errs })}
+								`,
+							}) %>
 						<% } %>
 
 						<% for (const input of inputs) { %>
-							<%- include('partials/form/input-field', input)%>
+							<%- include('partials/form/input-field', input) %>
 						<% } %>
 
 						<% if (locals.hasTextarea) {%>
-							<%- include('partials/form/textarea-field', textarea)%>
+							<%- include('partials/form/textarea-field', textarea) %>
 						<% } %>
 
-						<%- include('partials/form/button', { label: submissionLabel })%>
+						<%- include('partials/form/button', { label: submissionLabel }) %>
 					</form>
 				</fieldset>
 			</main>

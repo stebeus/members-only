@@ -2,23 +2,43 @@
 <html lang="en">
 	<%- include('partials/metadata', locals.title) %>
 	<body>
-		<div id="root">
+		<div id="root" class="grid">
 			<%- include('partials/navbar') %>
-			<main>
+			<main class="flex flex-col gap-m max-w mx-auto p-m">
 				<% if (locals.user == null) { %>
-					<p><a href="/sign-up">Sign up</a> to create posts.</p>
+					<%- include('partials/alert', {
+						children: `
+							<p class="text-center">
+								<a href="/log-in">Log into an existing account</a>
+								to create posts.
+							</p>
+						`,
+					}) %>
 				<% } else { %>
-					<p>Welcome, <%= user.full_name %>!</p>
+					<p class="color-content fs-xl fw-bold text-center">
+						Welcome, <%= user.full_name %>!
+					</p>
 
 					<% if (!user.is_member) { %>
-						<p>
-							<a href="/join-the-club">Join the club</a>
-							to see usernames and dates.
-						</p>
+						<%- include('partials/alert', {
+							children: `
+								<p class="text-center">
+									<a href="/join-the-club">Join the club</a>
+									to see usernames and dates.
+								</p>
+							`,
+						}) %>
+        	<% } %>
+
+					<% if (user.is_admin) { %>
+						<%- include('partials/alert', {
+							level: 'admin',
+							children: '<p class="text-center">You are an admin.</p>',
+						}) %>
         	<% } %>
 				<% } %>
 
-				<ul>
+				<ul class="flex flex-col gap-m">
 					<% for (const post of posts) { %>
 						<li><%- include('partials/post', { post }) %></li>
 					<% } %>
