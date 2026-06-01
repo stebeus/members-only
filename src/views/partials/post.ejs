@@ -1,8 +1,10 @@
-<article>
+<article class="border border-radius flex flex-col gap-m p-xl relative">
 	<header>
-		<h2><%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %></h2>
-		<p>
-			<span>
+		<h2 class="fw-bold">
+			<%= locals.user?.is_member ? post.author_full_name : 'Anonymous' %>
+		</h2>
+		<p class="fs-s">
+			<span class="separator-disc">
 				@<%= locals.user?.is_member ? post.author_username : 'anon' %>
 			</span>
 			<time datetime="<%= locals.user?.is_member ? post.created_at : null %>">
@@ -11,11 +13,12 @@
 		</p>
 	</header>
 
-	<h3><%= post.title %></h3>
+	<h3 class="fs-l fw-bold"><%= post.title %></h3>
 	<p><%= post.content %></p>
 
 	<% if (locals.user?.is_admin) { %>
 		<%- include('button-link', {
+			class: 'absolute border-radius-tr-bl fs-xs right-0 top-0 --danger',
 			href: `/delete-post/${post.id}`,
 			label: 'Delete post',
 		}) %>

@@ -1,6 +1,7 @@
-<label class="field">
-	<span class="label"><%= label %></span>
+<label class="Field flex flex-col gap-2xs">
+	<span class="fw-medium"><%= label %></span>
 	<input
+		class="border border-radius p-xs"
 		type="<%= locals.type ?? 'text' %>"
 		name="<%= name %>"
 		placeholder="<%= locals.placeholder %>"
@@ -8,4 +9,5 @@
 		<%- locals.isRequired ? 'required' : '' %>
 		autocomplete=<%= locals.autocomplete ?? 'off' %>
 	>
+	<span class="fs-s opacity"><%= locals.helperText %></span>
 </label>
