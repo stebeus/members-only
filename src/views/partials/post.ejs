@@ -8,7 +8,10 @@
 				@<%= locals.user?.is_member ? post.author_username : 'anon' %>
 			</span>
 			<time datetime="<%= locals.user?.is_member ? post.created_at : null %>">
-				<%= locals.user?.is_member ? post.created_at : 'Unknown date' %>
+				<%= locals.user?.is_member
+					? formatDate(post.created_at)
+					: 'Unknown date';
+				%>
 			</time>
 		</p>
 	</header>
