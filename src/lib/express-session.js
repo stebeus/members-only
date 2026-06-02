@@ -8,6 +8,7 @@ import { pool } from './pg.js';
 const pgSession = connectPgSimple(session);
 
 export const expressSession = session({
+	maxAge: 1000 * 60 * 60 * 24 * 90, // 3 months
 	resave: false,
 	saveUninitialized: false,
 	secret: SESSION_SECRET,
